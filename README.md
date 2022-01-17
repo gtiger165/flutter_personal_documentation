@@ -47,6 +47,7 @@ SharedPrefUtil.getPreferencesValue().then((value) {
 
 ### Flutter Build Apk 
 Add this parameter when build apk/appbundle to reduce it size.<br>
+source: https://stackoverflow.com/questions/55536637/how-to-build-signed-apk-from-android-studio-for-flutter <br>
 ```bash
 flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi
 ```
