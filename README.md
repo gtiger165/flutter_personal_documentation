@@ -51,3 +51,11 @@ source: https://stackoverflow.com/questions/55536637/how-to-build-signed-apk-fro
 ```bash
 flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi
 ```
+
+### FlutterFire Problem
+On firebase documentation flutter, recommended installation using firebase cli (flutterfire). There gonna be problem on permission, so when you want to configure firebase on flutter project, use this command: <br>
+```bash
+sudo flutterfire configure
+```
+source: https://stackoverflow.com/questions/38067572/firebase-tools-error-eacces-permission-denied <br>
+https://github.com/invertase/flutterfire_cli/issues/27#issuecomment-1002965081 <br>
