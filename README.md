@@ -1,4 +1,4 @@
-# flutter_personal_documentation
+# personal_documentation
 Personal notes about flutter 
 
 ## Coding Documentation
@@ -59,3 +59,9 @@ sudo flutterfire configure
 ```
 source: https://stackoverflow.com/questions/38067572/firebase-tools-error-eacces-permission-denied <br>
 https://github.com/invertase/flutterfire_cli/issues/27#issuecomment-1002965081 <br>
+
+### Android 12 Exported Policy
+New policy from google play store, on android 12 required exported on activity, receiver, service, and provider in AndroidManifest.xml. <br>
+source : <br>
+- https://stackoverflow.com/questions/69287478/androidexported-added-but-still-getting-error-apps-targeting-android-12-and-hig <br>
+- https://stackoverflow.com/questions/68554294/androidexported-needs-to-be-explicitly-specified-for-activity-apps-targeting<br>
