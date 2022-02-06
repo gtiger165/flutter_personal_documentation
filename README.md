@@ -65,3 +65,60 @@ New policy from google play store, on android 12 required exported on activity, 
 source : <br>
 - https://stackoverflow.com/questions/69287478/androidexported-added-but-still-getting-error-apps-targeting-android-12-and-hig <br>
 - https://stackoverflow.com/questions/68554294/androidexported-needs-to-be-explicitly-specified-for-activity-apps-targeting<br>
+
+### Jitsi Flutter IOS Build problem
+Few problem when build on ios is Podfile configuration, try this Podfile and few step on source:
+```ruby
+# Uncomment this line to define a global platform for your project
+platform :ios, '11.0'
+
+# CocoaPods analytics sends network stats synchronously affecting flutter build latency.
+ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+
+project 'Runner', {
+  'Debug' => :debug,
+  'Profile' => :release,
+  'Release' => :release,
+}
+
+def flutter_root
+  generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'Generated.xcconfig'), __FILE__)
+  unless File.exist?(generated_xcode_build_settings_path)
+    raise "#{generated_xcode_build_settings_path} must exist. If you're running pod install manually, make sure flutter pub get is executed first"
+  end
+
+  File.foreach(generated_xcode_build_settings_path) do |line|
+    matches = line.match(/FLUTTER_ROOT\=(.*)/)
+    return matches[1].strip if matches
+  end
+  raise "FLUTTER_ROOT not found in #{generated_xcode_build_settings_path}. Try deleting Generated.xcconfig, then run flutter pub get"
+end
+
+require File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelper'), flutter_root)
+
+flutter_ios_podfile_setup
+
+target 'Runner' do
+  use_frameworks!
+  use_modular_headers!
+
+  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    flutter_additional_ios_build_settings(target)
+    target.build_configurations.each do |config|
+      config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+      config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+      config.build_settings['ENABLE_BITCODE'] = 'NO'
+    end
+  end
+end
+```
+Source : <br>
+- https://milanpanchal24.medium.com/xcode-12-building-for-ios-simulator-but-linking-in-object-file-built-for-ios-file-for-8c0cc28ec832 <br>
+- https://giters.com/gunschu/jitsi_meet/issues/309 <br>
+- https://stackoverflow.com/questions/69246089/couldnt-build-the-application-for-the-simulator-error-launching-application-on <br>
+- https://stackoverflow.com/questions/54704207/the-ios-simulator-deployment-targets-is-set-to-7-0-but-the-range-of-supported-d <br>
+- https://stackoverflow.com/questions/65008533/iphoneos-deployment-target-is-set-to-8-0-xcode-12-flutter <br>
