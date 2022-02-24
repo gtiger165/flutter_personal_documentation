@@ -122,3 +122,11 @@ Source : <br>
 - https://stackoverflow.com/questions/69246089/couldnt-build-the-application-for-the-simulator-error-launching-application-on <br>
 - https://stackoverflow.com/questions/54704207/the-ios-simulator-deployment-targets-is-set-to-7-0-but-the-range-of-supported-d <br>
 - https://stackoverflow.com/questions/65008533/iphoneos-deployment-target-is-set-to-8-0-xcode-12-flutter <br>
+
+### Research On Firebase Cloud Messaging (FCM)
+Short story is in current job, i got assign on FCM problem for delay a few seconds. Short explanation <b>caused by the unrealistic heartbeat intervals in Firebase Cloud Messaging</b>. Luckly there some alternatives that i can try later, thats called Pushy(https://pushy.me). Also **priority configuration message** also part of it. <br>
+Source : <br>
+- https://stackoverflow.com/questions/38725622/android-delay-in-receiving-message-in-fcmonmessagereceived
+- http://eladnava.com/google-cloud-messaging-extremely-unreliable/
+- https://pushy.me/
+- https://github.com/pushy-me/pushy-demo-flutter
