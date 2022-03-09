@@ -130,3 +130,37 @@ Source : <br>
 - http://eladnava.com/google-cloud-messaging-extremely-unreliable/
 - https://pushy.me/
 - https://github.com/pushy-me/pushy-demo-flutter
+
+### Flutter Local Notifications & FCM Issue
+Okay, so i face some issues. On android 12 i tried to test notification through FCM. There problem caused by null value? After a long pain hours i've finally found some solutions. Problem caused by null notification icons so it need no initialize manually on android studio with add -> image asset menu. Few setup settings on flutter local notification plugin.<br>
+```dart
+
+    ...
+    
+    var androidSettings = const AndroidInitializationSettings("app_icon");
+    var iosSettings = IOSInitializationSettings(
+      onDidReceiveLocalNotification: (id, title, body, paylod) {},
+    );
+    var initializeSettings =
+        InitializationSettings(android: androidSettings, iOS: iosSettings);
+    // * FlutterLocalNotificationsPlugin
+    _plugin.initialize(initializeSettings);
+    
+    ...
+
+```
+<br>
+And on FCM issue sometimes it need to call getToken method before listen on firebase foreground message.<br>
+```dart
+...
+
+FirebaseMessaging.instance.getToken();
+FirebaseMessaging.onMessage.listen((event) {...});
+
+...
+```
+<br>
+Source : <br>
+- https://github.com/MaikuB/flutter_local_notifications/issues/220
+- https://stackoverflow.com/questions/60641097/flutter-local-notification-error-int-java-lang-integer-intvalue-on-a-null
+- https://github.com/FirebaseExtended/flutterfire/issues/6011
