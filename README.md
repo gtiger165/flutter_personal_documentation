@@ -149,18 +149,20 @@ Okay, so i face some issues. On android 12 i tried to test notification through 
     ...
 
 ```
-<br>
-And on FCM issue sometimes it need to call getToken method before listen on firebase foreground message.<br>
+####
+On FCM issue sometimes it need to call getToken method before listen on firebase foreground message.
 ```dart
-...
+   ...
 
-FirebaseMessaging.instance.getToken();
-FirebaseMessaging.onMessage.listen((event) {...});
+   FirebaseMessaging.instance.getToken();
+   FirebaseMessaging.onMessage.listen((event) {
+     // do something
+   });
 
-...
+  ...
 ```
-<br>
 Source : <br>
 - https://github.com/MaikuB/flutter_local_notifications/issues/220
 - https://stackoverflow.com/questions/60641097/flutter-local-notification-error-int-java-lang-integer-intvalue-on-a-null
 - https://github.com/FirebaseExtended/flutterfire/issues/6011
+<br>
