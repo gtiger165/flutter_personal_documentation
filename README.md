@@ -198,7 +198,7 @@ So i face another issue in local notification, which is about custom notificatio
    - IOS : `ios/(your_sound_file.aiff)`
    - Note : in android only support on .mp3 extension while IOS is .aiff extension
 2. In android add `keep.xml` file
-   ```
+   ```xml
     <?xml version="1.0" encoding="utf-8"?>
     <resources xmlns:tools="http://schemas.android.com/tools"
       tools:keep="@raw/(custom_sound_filename)"/>
@@ -206,7 +206,7 @@ So i face another issue in local notification, which is about custom notificatio
    PS : When define your sound filename no need to add extension of the file, ex. 'morning_alarm.mp3' then define it 'morning_alarm'
 3. Next is to set raw resource file on notification settings. Here's an example :
 
-   ```
+   ```dart
      Future<void> showNotificationCustomSound({
       int? id,
       String? title,
